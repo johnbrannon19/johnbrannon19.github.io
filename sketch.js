@@ -2,7 +2,6 @@ var bigboi;
 var particles = [];
 //constant gravity
 var mg = .06;
-//radius of particles
 var radius = 5;
 var isFrozen = false;
 var isContinue = true;
@@ -109,6 +108,7 @@ function Particle(locx, locy, direction) {
     this.b = this.loc.y - bigboi.posy;
     this.c = Math.sqrt(this.a*this.a + this.b*this.b);
     // interaction with bigboi and particles
+    //credit to Mrs. DeBB
     if(bigBoiClick === true){
       if(this.c <= bigboi.r/2 + radius){
         var n = p5.Vector.sub(this.loc, bigboi.loc);
@@ -170,7 +170,7 @@ function boxAndTitle() {
   text("Smoll Kangaroos", width/2 - 200, height/12);
   textSize(20*width/1250);
   fill(50);
-  text("Use These Buttons To Change How The Particles Act!", width/200, height/25, width/4, height/15 - 1);
+  text("Use These Buttons To Change How The Particles Act!", width/200, height/75, width/4, height/10);
 }
 
 function button (x,y) {
@@ -231,7 +231,7 @@ function randomXValues() {
   if(mouseIsPressed){
     if(mouseX <= width/200 + 50 && mouseX >= width/200 && mouseY <= 125 && mouseY >= 75){
       if(mouseButton === LEFT) {
-        //So vertical does not mess with shatter
+        //So verticle does not mess with shatter
         if(isContinue === false) {
           isContinue = !isContinue;
           for(var i = 0; i < particles.length; i++) {
@@ -240,7 +240,6 @@ function randomXValues() {
             }
           }
         }
-        //can shatter while not vertical
         else{
           for(var i = 0; i < particles.length; i++) {
             if(particles[i].c > bigboi.r/2 + radius*2) {
